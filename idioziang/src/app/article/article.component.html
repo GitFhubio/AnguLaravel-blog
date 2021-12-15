@@ -1,0 +1,41 @@
+
+<div class="card">
+  <h1>{{article.title}}</h1>
+  <img class="card-img-top" alt="Card image cap">
+  <div class="card-body">
+    <h5 *ngIf="article.author" class="card-title">{{article.author.name}}</h5>
+    <p class="card-text">{{article.content}}</p>
+    <ul class="categories">
+      <li *ngFor="let category of article.categories">
+       <span class="badge badge-primary">{{category.slug}}</span>
+      </li>
+    </ul>
+    <ul class="tags">
+      <li *ngFor="let tag of article.tags">
+        <span class="badge badge-warning">{{tag.slug}}</span>
+      </li>
+    </ul>
+    <h3>Commenti {{ article.comments.length }}</h3>
+    <ul *ngIf="article.comments" class="comments">
+      <li *ngFor="let comment of article.comments;let i=index;">
+       <p>{{comment.body}}</p>
+       <p *ngIf="comment.author" class="font-weight-bold">{{comment.author.name}}</p>
+       <a (click)="hideme[i] = !hideme[i]">{{"Risposte ("+ comment.replies.length + ")"}}
+      </a>
+        <div [hidden]="!hideme[i]" >
+         <ul class="replies">
+         <li *ngFor="let reply of comment.replies">
+           <p>{{reply.body}}</p>
+         </li>
+       </ul>
+          <input #message (keydown.enter)="sendReply(message,comment)" type="text">
+      </div>
+      </li>
+    </ul>
+      <div class="reply">
+        <h5>Scrivi un commento</h5>
+        <input #message (keydown.enter)="sendMessage(message)" type="text">
+      </div>
+  </div>
+</div>
+

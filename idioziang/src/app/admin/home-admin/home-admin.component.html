@@ -1,0 +1,4 @@
+<p>home-admin works!</p>
+<div class="row-content">
+  <a *ngIf="this.mservice.current('role') == 'superadmin'" [routerLink]="['/admin/users']"><button class="btn btn-danger">Tutti gli utenti</button></a>
+</div>

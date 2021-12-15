@@ -1,0 +1,6 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form" >
+<select multiple class="form-control"  formControlName="selectedRoles" >
+  <option *ngFor="let role of roles" value={{role}}>{{role}}</option>
+</select>
+<button type="submit" class="btn btn-primary">Conferma modifiche</button>
+  </form>

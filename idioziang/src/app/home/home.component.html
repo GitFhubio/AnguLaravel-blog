@@ -1,0 +1,22 @@
+<div class="container">
+<div *ngFor="let article of articles" class="card">
+  <h3 class="card-title">{{article.title}}</h3>
+  <img class="card-img-top" src="..." alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-subtitle">{{article.title}}</h5>
+    <p class="card-text">{{article.content?.slice(0,100)+'...'}}</p>
+    <ul class="categories">
+      <li *ngFor="let category of article.categories">
+        <span class="badge badge-primary">{{category.slug}}</span>
+      </li>
+    </ul>
+    <ul class="tags">
+      <li *ngFor="let tag of article.tags">
+        <span class="badge badge-warning">{{tag.slug}}</span>
+      </li>
+    </ul>
+    <a href="javascript:void(0)" [routerLink]="['/articles',article.id]" class="btn btn-primary">Vai all'articolo</a>
+  </div>
+</div>
+</div>
+

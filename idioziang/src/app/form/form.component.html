@@ -1,0 +1,37 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="title">Titolo dell'articolo:</label>
+    <input type="text" (input)="checkString('title')" class="form-control" formControlName="title">
+    <!-- ngModel name="title" -->
+  </div>
+  <div class="form-group">
+    <label for="content">Testo:</label>
+    <textarea rows="30" cols="50" class="form-control" formControlName="content"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="image">Copertina:</label>
+    <input type="file"
+    class="form-control"
+    id="file"
+    formControlName="file"
+    (change)="onFileSelect($event)">
+  </div>
+  <div class="form-group">
+ <select multiple class="form-control"  formControlName="selectedCategories" >
+   <option *ngFor="let category of categories" value={{category.id}}>{{category.slug}}</option>
+ </select>
+  <input type="text" #newcategory>
+  <button type="button" (click)="addToList('c',newcategory)">Aggiungi categoria</button>
+  <ul><li #item *ngFor="let cat of newCategories" (click)="removeItem('c',item)">{{cat}}</li>
+</ul>
+</div>
+<div class="form-group">
+  <input type="text" #newtag>
+  <button type="button" (click)="addToList('t',newtag)">Aggiungi tag</button>
+  <ul><li #item *ngFor="let tag of newTags" (click)="removeItem('t',item)">{{tag}}</li>
+</ul>
+</div>
+  <button type="submit" class="btn btn-primary">Aggiungi nuovo articolo</button>
+</form>
+
+<p *ngIf="error">Tutti i campi sono obbligatori</p>
