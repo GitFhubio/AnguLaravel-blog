@@ -1,9 +1,9 @@
 <div class="container">
 <div *ngFor="let article of articles" class="card">
-  <h3 class="card-title">{{article.title}}</h3>
-  <img class="card-img-top" src="..." alt="Card image cap">
+  <h3 class="card-title text-center">{{article.title}}</h3>
+  <img class="card-img-top" src="https://via.placeholder.com/400x400" alt="Card image cap" alt="Card image cap">
   <div class="card-body">
-    <h5 class="card-subtitle">{{article.title}}</h5>
+    <h5 class="card-subtitle">Di {{article.author.name}}</h5>
     <p class="card-text">{{article.content?.slice(0,100)+'...'}}</p>
     <ul class="categories">
       <li *ngFor="let category of article.categories">

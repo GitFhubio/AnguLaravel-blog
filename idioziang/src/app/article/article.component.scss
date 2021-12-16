@@ -5,3 +5,16 @@ ul {
 .comments,.replies{
   display:block;
 }
+.card{
+opacity:0.8;
+padding:20px;
+&-img-top{
+  float:left;
+  width:200px;
+  height:auto;
+  margin:0 20px;
+}
+&-text{
+  text-align: justify;
+}
+}

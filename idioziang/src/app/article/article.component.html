@@ -1,10 +1,59 @@
-
 <div class="card">
-  <h1>{{article.title}}</h1>
-  <img class="card-img-top" alt="Card image cap">
+  <h1 class="text-center">{{article.title}}</h1>
+  <!-- <h5 *ngIf="article.author" class="card-title">{{article.author.name}}</h5> -->
+  <div>
+  <img class="card-img-top" src="https://via.placeholder.com/400x400" alt="Card image cap" >
+  <p class="card-text">{{article.content}} How many times were you frustrated while looking
+    out for a good collection of programming/algorithm
+    /interview questions? What did you expect and what
+    did you get? This portal has been created to
+    provide well written, well thought and well
+    explained solutions for selected questions.
+    An IIT Roorkee alumnus and founder of GeeksforGeeks.
+    He loves to solve programming problems in most
+    efficient ways. Apart from GeeksforGeeks, he has
+    worked with DE Shaw and Co. as a software developer
+    and JIIT Noida as an assistant professor. It is a
+    good platform to learn programming. It is an
+    educational website. Prepare for the Recruitment
+    drive of product based companies like Microsoft,
+    Amazon, Adobe etc with a free online placement
+    preparation course.
+    How many times were you frustrated while looking
+    out for a good collection of programming/algorithm
+    /interview questions? What did you expect and what
+    did you get? This portal has been created to
+    provide well written, well thought and well
+    explained solutions for selected questions.
+    An IIT Roorkee alumnus and founder of GeeksforGeeks.
+    He loves to solve programming problems in most
+    efficient ways. Apart from GeeksforGeeks, he has
+    worked with DE Shaw and Co. as a software developer
+    and JIIT Noida as an assistant professor. It is a
+    good platform to learn programming. It is an
+    educational website. Prepare for the Recruitment
+    drive of product based companies like Microsoft,
+    Amazon, Adobe etc with a free online placement
+    preparation course.
+    How many times were you frustrated while looking
+    out for a good collection of programming/algorithm
+    /interview questions? What did you expect and what
+    did you get? This portal has been created to
+    provide well written, well thought and well
+    explained solutions for selected questions.
+    An IIT Roorkee alumnus and founder of GeeksforGeeks.
+    He loves to solve programming problems in most
+    efficient ways. Apart from GeeksforGeeks, he has
+    worked with DE Shaw and Co. as a software developer
+    and JIIT Noida as an assistant professor. It is a
+    good platform to learn programming. It is an
+    educational website. Prepare for the Recruitment
+    drive of product based companies like Microsoft,
+    Amazon, Adobe etc with a free online placement
+    preparation course.</p>
+  </div>
   <div class="card-body">
-    <h5 *ngIf="article.author" class="card-title">{{article.author.name}}</h5>
-    <p class="card-text">{{article.content}}</p>
+    <h5 class="card-title"> <fa-icon [icon]="faUser"></fa-icon> {{article.author?.name}}</h5>
     <ul class="categories">
       <li *ngFor="let category of article.categories">
        <span class="badge badge-primary">{{category.slug}}</span>
@@ -38,4 +87,3 @@
       </div>
   </div>
 </div>
-

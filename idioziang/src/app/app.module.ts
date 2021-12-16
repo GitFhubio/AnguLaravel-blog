@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { Page404Component } from './page404/page404.component';
 import { ArticleComponent } from './article/article.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { JwtModule } from '@auth0/angular-jwt';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -38,6 +39,7 @@ export function tokenGetter(): any {
     JwtModule,
     ReactiveFormsModule, //vitafounder way
     FormsModule,
+    FontAwesomeModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
