@@ -1,0 +1,19 @@
+.my-wrapper{
+  margin:0% 5%;
+}
+main{
+  width:80%;
+}
+aside{
+  display:flex;
+  width:20%;
+  margin-left:5%;
+}
+nav{
+  position:absolute;
+  top:10px;
+  right:30px;
+  button:last-of-type{
+    margin-left:5px;
+  }
+}

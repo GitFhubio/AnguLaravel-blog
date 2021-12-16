@@ -1,2 +1,15 @@
-<router-outlet>
-</router-outlet>
+<div class="my-wrapper d-flex">
+<nav>
+  <button class="btn btn-dark"  *ngIf="router.url != '/login'"  (click)="router.navigate(['/login'])">Accedi</button>
+  <button  class="btn btn-dark" *ngIf="router.url != '/register'" (click)="router.navigate(['/register'])">Registrati</button>
+  <button  class="btn btn-dark" *ngIf="router.url != '/'"  (click)="router.navigate(['/'])">Home</button>
+  </nav>
+ <main>
+  <router-outlet>
+  </router-outlet>
+ </main>
+ <aside *ngIf="router.url != '/login' && router.url != '/register'">
+  <app-sidebar>
+  </app-sidebar>
+ </aside>
+</div>

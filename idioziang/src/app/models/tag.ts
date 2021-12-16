@@ -1,4 +1,4 @@
 export class Tag {
-  name?: string;
-  slug?: string;
+  name: string = '';
+  slug: string = '';
 }

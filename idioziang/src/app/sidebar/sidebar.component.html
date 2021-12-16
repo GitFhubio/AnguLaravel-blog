@@ -1,0 +1,12 @@
+<h3>Categorie</h3>
+    <ul class="categories">
+      <li *ngFor="let category of categories">
+        <span class="badge badge-primary" (click)=searchByCat(category.name) >{{category.slug}}</span>
+      </li>
+    </ul>
+<h3>Tags</h3>
+    <ul class="tags">
+      <li *ngFor="let tag of tags">
+        <span class="badge badge-warning" (click)=searchByTag(tag.name) >{{tag.slug}}</span>
+      </li>
+    </ul>

@@ -31,4 +31,6 @@ Route::resource('replies', 'ReplyController', ['only' => ['index','create','show
 Route::resource('users', 'UserController', ['only' => ['index','create','show']]);
 Route::resource('articles', 'ArticleController', ['only' => ['index','create','show']]);
 Route::get('categories', 'Api\ApiController@categories');
+Route::get('articles-by-cat/{param}', 'Api\ApiController@filteredByCat');
+Route::get('articles-by-tag/{param}', 'Api\ApiController@filteredByTag');
 Route::get('tags', 'Api\ApiController@tags');

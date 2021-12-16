@@ -97,6 +97,8 @@ class ArticleController extends Controller
             // $comment->author = call_user_func_array("array_merge", $lead);
             $comment->author =  $comment->auth()->get()->first();
             $comment->replies =  $comment->replies()->get();
+            foreach($comment->replies as $reply)
+            $reply->author=$reply->auth()->get()->first();
         }
         $author=$article->user()->get()->first();
         // $res=array_merge($article);

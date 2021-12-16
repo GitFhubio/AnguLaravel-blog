@@ -1,5 +1,5 @@
 export class Category {
-  id?:number;
-  name?: string;
-  slug?: string;
+  id:number=0;
+  name: string='';
+  slug: string='';
 }

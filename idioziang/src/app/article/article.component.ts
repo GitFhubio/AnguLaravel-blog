@@ -1,11 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { ThrowStmt } from '@angular/compiler';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { MainService } from '../main.service';
 import { Article } from '../models/article';
-import { fromEventPattern } from 'rxjs';
 
 @Component({
   selector: 'app-article',

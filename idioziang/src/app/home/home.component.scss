@@ -9,3 +9,15 @@ ul {
     max-height:250px;
   }
 }
+h2{
+  font-size:20px;
+  padding:10px 20px;
+  position:relative;
+}
+fa-icon{
+  position:absolute;
+  cursor: pointer;
+  right:3px;
+  top:3px;
+  font-size:12px;
+}

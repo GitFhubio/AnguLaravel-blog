@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { FormComponent } from './form/form.component';
 import { AdminListComponent } from './admin/admin-list/admin-list.component';
 import { UpdateRolesComponent } from './admin/update-roles/update-roles.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 export function tokenGetter(): any {
   return localStorage.getItem('token');
@@ -33,7 +34,8 @@ export function tokenGetter(): any {
     HomeAdminComponent,
     FormComponent,
     AdminListComponent,
-    UpdateRolesComponent
+    UpdateRolesComponent,
+    SidebarComponent
   ],
   imports: [
     JwtModule,

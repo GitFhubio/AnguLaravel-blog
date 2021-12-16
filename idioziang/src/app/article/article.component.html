@@ -75,6 +75,7 @@
          <ul class="replies">
          <li *ngFor="let reply of comment.replies">
            <p>{{reply.body}}</p>
+           <p class="font-weight-bold">{{reply.author?.name}}</p>
          </li>
        </ul>
           <input #message (keydown.enter)="sendReply(message,comment)" type="text">

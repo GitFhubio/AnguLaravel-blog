@@ -14,12 +14,20 @@ import { User } from './models/user';
 export class MainService implements CanActivate {
   constructor(public http:HttpClient,private router: Router,public jwtHelper: JwtHelperService) {
   }
+  onSearchByTag:(string|boolean)[]=[];
+  onSearchByCat:(string|boolean)[]=[];
 
 allArticles(){
   return this.http.get<Article[]>('http://127.0.0.1:8000/api/articles');
 }
 allCategories(){
   return this.http.get<Category[]>('http://127.0.0.1:8000/api/categories');
+}
+articlesByTag(param:string){
+  return this.http.get<Article[]>('http://127.0.0.1:8000/api/articles-by-tag/'+param);
+}
+articlesByCat(param:string){
+  return this.http.get<Article[]>('http://127.0.0.1:8000/api/articles-by-cat/'+param);
 }
 allTags(){
   return this.http.get<Tag[]>('http://127.0.0.1:8000/api/tags');
@@ -82,5 +90,11 @@ logout(): void {
 
 getUsers() {
   return this.http.get<User[]>(`http://127.0.0.1:8000/api/users`);
+}
+private variable = new Subject<Article[]>();
+variableChanged$= this.variable.asObservable();
+
+changeVariable(u:Article[]){
+this.variable.next(u);
 }
 }
