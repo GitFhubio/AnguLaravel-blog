@@ -27,6 +27,7 @@
             <a [routerLink]="['/']" class="btn btn-default"> Cancel</a>
             <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Login</button>
           </div>
+          <a class="btn btn-default" *ngIf="router.url != '/register'" (click)="router.navigate(['/register'])">Non hai un account? Registrati</a>
         </div>
       </fieldset>
     </form>

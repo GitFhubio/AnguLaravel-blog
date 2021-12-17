@@ -1,8 +1,9 @@
 export class Article {
-  id?:number;
+  id?:number|string;
   title?: string;
- content?: string;
-  user_id?:number;
+  content?: string;
+  img?:string;
+  user_id?:number|string;
   comments: any[]=[];
   categories:any[]=[];
   tags:any[]=[];

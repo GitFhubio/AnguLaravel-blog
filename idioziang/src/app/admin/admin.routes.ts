@@ -10,5 +10,6 @@ export const adminRoutes: Routes = [
  {path: 'users', component: AdminListComponent},
 {path: 'create-article', component:FormComponent},
 {path: 'logout', component:LogoutComponent},
+{path: 'update-article/:idU/:idA', component:FormComponent},
 {path: 'update-role/:id', component:UpdateRolesComponent},
 ]

@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
       invalidEmail: true
     };
   }
-  constructor(fb: FormBuilder, private authService: MainService, private router: Router) {
+  constructor(fb: FormBuilder, private authService: MainService, public router: Router) {
     this.passwordControl = fb.control('', [Validators.required, Validators.minLength(6)]);
     this.emailControl = fb.control('', [Validators.required, LoginComponent.isValidEmail]);
     this.userForm = fb.group({
@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
         response  => {
           console.log(response);
           console.log(this.authService.current('id'))
+          console.log(this.authService.current('roles'))
           if (response === true) {
             this.router.navigate(['/admin']);
           } else {

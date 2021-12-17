@@ -13,9 +13,9 @@ import { User } from 'src/app/models/user';
 export class AdminListComponent implements OnInit {
 users:User[]=[];
 form : FormGroup;
-roles:string[]=['admin','user','writer','editor'];
+roles:string[]=['admin','writer','editor'];
 private headers = new HttpHeaders({'Content-Type': 'application/json'});
-  constructor(private router:Router,public _http:HttpClient, public mservice:MainService,public fb: FormBuilder) {
+  constructor(public router:Router,public _http:HttpClient, public mservice:MainService,public fb: FormBuilder) {
 
     this.mservice.getUsers()
       .subscribe(res => {

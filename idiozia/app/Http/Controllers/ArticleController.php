@@ -52,6 +52,10 @@ class ArticleController extends Controller
         if($request->file('image')){
             $article->img = $request->file('image')->store('images');
         }
+        $article->save();
+        if ($categories != '') {
+            $article->categories()->attach($categories);
+        }
         if(count(json_decode($data['newCategories']))>0){
             $res=json_decode($data['newCategories']);
             $newCatIds=[];
@@ -62,6 +66,7 @@ class ArticleController extends Controller
                 $newcategory->save();
                 $newCatIds[]=$newcategory->id;
             }
+            $article->categories()->attach($newCatIds);
         }
         if(count(json_decode($data['newTags']))>0){
             $res2=json_decode($data['newTags']);
@@ -73,12 +78,9 @@ class ArticleController extends Controller
                 $tag->save();
                 $newTagIds[]=$tag->id;
             }
+            $article->tags()->attach($newTagIds);
         }
-        $article->save();
-        $article->categories()->attach($categories);
-        $article->categories()->attach($newCatIds);
-        $article->tags()->attach($newTagIds);
-        return response()->json($res);
+        return response()->json('salvato',200);
         // return redirect()->route('offers.index');
     }
 
@@ -128,7 +130,46 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data= $request->all();
+        $article=Article::find($id);
+        $article->title=json_decode($data['myform'],true)['title'];
+        $article->content=json_decode($data['myform'],true)['content'];
+        $categories=json_decode($data['myform'],true)['selectedCategories'];
+        $article->user_id=$data['id'];
+        if($request->file('image')){
+            $article->img = $request->file('image')->store('images');
+        }
+        $article->save();
+        $article->categories()->detach();
+        if ($categories != '') {
+            $article->categories()->attach($categories);
+        }
+        if(count(json_decode($data['newCategories']))>0){
+            $res=json_decode($data['newCategories']);
+            $newCatIds=[];
+            foreach($res as $newcat){
+                $newcategory=new Category();
+                $newcategory->name=$newcat;
+                $newcategory->slug=$newcat;
+                $newcategory->save();
+                $newCatIds[]=$newcategory->id;
+            }
+            $article->categories()->attach($newCatIds);
+        }
+        $article->tags()->detach();
+        if(count(json_decode($data['newTags']))>0){
+            $res2=json_decode($data['newTags']);
+            $newTagIds=[];
+            foreach($res2 as $newtag){
+                $tag=new Tag();
+                $tag->name=$newtag;
+                $tag->slug=$newtag;
+                $tag->save();
+                $newTagIds[]=$tag->id;
+            }
+            $article->tags()->attach($newTagIds);
+        }
+      return response()->json('salvato',200);
     }
 
     /**
@@ -139,6 +180,7 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $article=Article::find($id);
+        $article->delete();
     }
 }

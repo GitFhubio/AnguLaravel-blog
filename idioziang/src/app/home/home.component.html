@@ -1,8 +1,8 @@
  <h2 class="badge badge-primary" *ngIf="this.mservice.onSearchByCat[0]">Categoria : {{this.mservice.onSearchByCat[1]}} <fa-icon [icon]="faTimes" (click)=close()></fa-icon></h2>
   <h2 class="badge badge-warning"  *ngIf="this.mservice.onSearchByTag[0]">Tag : {{this.mservice.onSearchByTag[1]}} <fa-icon [icon]="faTimes" (click)=close()></fa-icon></h2>
-<div *ngFor="let article of articles" class="card">
+<div *ngFor="let article of articles | paginate:{itemsPerPage: 5, currentPage:p}" class="card">
   <h3 class="card-title text-center">{{article.title}}</h3>
-  <img class="card-img-top" src="https://via.placeholder.com/400x400" alt="Card image cap" alt="Card image cap">
+  <img class="card-img-top" src="{{article.img != null ? 'http://127.0.0.1:8000/'+article.img : mservice.nullSrc}}" alt="Card image cap" alt="Card image cap">
   <div class="card-body">
     <h5 class="card-subtitle">Di {{article.author?.name}}</h5>
     <p class="card-text">{{article.content?.slice(0,100)+'...'}}</p>
@@ -20,5 +20,8 @@
   </div>
     <a href="javascript:void(0)" [routerLink]="['/articles',article.id]" class="btn btn-primary">Vai all'articolo</a>
   </div>
+</div>
+<div id="pagination">
+  <pagination-controls (pageChange)="p=$event"></pagination-controls>
 </div>
 

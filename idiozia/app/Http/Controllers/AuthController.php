@@ -25,13 +25,13 @@ class AuthController extends Controller
         'password.required' => 'Please Enter Your Password',
 
         ]);
-        switch($request->email){
-           case 'admin@outlook.it':
-            $role='superadmin';
-            break;
-           default:
-           $role='user';
-        }
+        // switch($request->email){
+        //    case 'admin@outlook.it':
+        //     $superadmin=true;
+        //     break;
+        //    default:
+        //    $superadmin=false;
+        // }
 
         // $currentId=User::where('email',$request->email)->first()->id; // o Auth id che già ho a sto punto
         if ($validator->fails()) {
@@ -43,7 +43,7 @@ class AuthController extends Controller
                 $token = JWTAuth::attempt($credentials);
                 if ($token) {
                     $message = ['success' => $token];
-                    return Response::json(["token" => $token, "role"=>$role, "id"=>Auth::id()], 200);
+                    return Response::json(["token" => $token, "id"=>Auth::id(),"roles"=>User::find(Auth::id())->getRoleNames()], 200);
                 } else {
                     $message = ['errors' => "Invalid credentials"];
                     return  Response::json($message, 202);

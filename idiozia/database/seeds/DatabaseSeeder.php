@@ -31,25 +31,30 @@ class DatabaseSeeder extends Seeder
         $role2 = Role::create(['name' => 'admin']);
         $role3 = Role::create(['name' => 'writer']);
         $role4 = Role::create(['name' => 'editor']);
-        $permission = Permission::create(['name' => 'edit-users']);
-        $role1->givePermissionTo($permission);
+        $permission1 = Permission::create(['name' => 'edit-users']);
+        $role1->givePermissionTo($permission1);
         $user1->assignRole($role1);
-
+        $permission4 = Permission::create(['name' => 'edit-posts']);
+        $permission3 = Permission::create(['name' => 'write-posts']);
+        $role2->givePermissionTo($permission3);
+        $role2->givePermissionTo($permission4);
+        $role3->givePermissionTo($permission3);
+        $role4->givePermissionTo($permission4);
         $user2=new User();
-        $user2->name='Tim';
-        $user2->email='Tim@outlook.it';
+        $user2->name='pippo';
+        $user2->email='pippo@gmail.com';
         $user2->password = Hash::make('beinformatica');
         $user2->save();
 
         $user3=new User();
-        $user3->name='Vodafone';
-        $user3->email='vodafone@outlook.it';
+        $user3->name='michele';
+        $user3->email='michele@gmail.com';
         $user3->password = Hash::make('beinformatica');
         $user3->save();
 
         $user4=new User();
-        $user4->name='windtre';
-        $user4->email='windtre@outlook.it';
+        $user4->name='giovanni';
+        $user4->email='giovanni@gmail.com';
         $user4->password = Hash::make('beinformatica');
         $user4->save();
 

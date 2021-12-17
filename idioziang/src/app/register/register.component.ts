@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
       invalidEmail: true
     };
   }
-  constructor(fb: FormBuilder, private authService: MainService, private router: Router) {
+  constructor(fb: FormBuilder, private authService: MainService, public router: Router) {
     this.userForm = fb.group({
       email: fb.control('', [Validators.required, Validators.minLength(3), RegisterComponent.isValidEmail]),
       name: fb.control('', [Validators.required, Validators.minLength(3)]),

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -14,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::with('roles')->get();
         return $users;
     }
 
@@ -71,6 +72,11 @@ class UserController extends Controller
     {
         $user=User::find($id);
         $data=$request->all();
+        $roleSelected= $data['selectedRoles'];
+        $role= Role::where('name',$roleSelected)->get();
+        $user->roles()->detach();
+        $user->assignRole($role);
+        return 'update eseguito';
 
     }
 

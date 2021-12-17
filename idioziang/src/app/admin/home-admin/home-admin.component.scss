@@ -1,0 +1,23 @@
+@import '../../../palette.scss' ;
+h2{
+  color:$primary_color;
+  text-shadow: 1px 2px 2px  $shadow_color;
+}
+.card-container{
+  display:flex;
+  flex-wrap: wrap;
+  .card{
+    width:300px;
+    margin:5px;
+    .buttons{
+      display:flex;
+      justify-content:center;
+      a{
+        margin-right:5px;
+      }
+    }
+  }
+}
+.up-content a{
+margin:0 0 5px 5px;
+}

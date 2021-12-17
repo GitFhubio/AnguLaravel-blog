@@ -1,9 +1,10 @@
 export class User {
-  constructor(
-    public id: string,
-    public email: string,
-    public name: string,
-    public password: string
-    ) {
-  }
+    public id: string ='';
+    public email: string='';
+    public name: string='';
+    public password: string='';
+    public roles?:Role;
+}
+export interface Role{
+  name:string;
 }

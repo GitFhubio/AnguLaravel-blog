@@ -1,14 +1,20 @@
 <div class="my-wrapper d-flex">
-<nav>
+<nav class="d-flex">
+  <div *ngIf="!mservice.loggedIn();else elseBlock;">
   <button class="btn btn-dark"  *ngIf="router.url != '/login'"  (click)="router.navigate(['/login'])">Accedi</button>
   <button  class="btn btn-dark" *ngIf="router.url != '/register'" (click)="router.navigate(['/register'])">Registrati</button>
+  </div>
+<ng-template #elseBlock>
+  <button class="btn btn-dark" *ngIf="!router.url.includes('/admin')"  (click)="router.navigate(['/admin'])">Dashboard</button>
+  <button  class="btn btn-dark" (click)="mservice.logout()">Disconnettiti</button>
+</ng-template>
   <button  class="btn btn-dark" *ngIf="router.url != '/'"  (click)="router.navigate(['/'])">Home</button>
   </nav>
  <main>
   <router-outlet>
   </router-outlet>
  </main>
- <aside *ngIf="router.url != '/login' && router.url != '/register'">
+ <aside *ngIf="router.url == '/'">
   <app-sidebar>
   </app-sidebar>
  </aside>

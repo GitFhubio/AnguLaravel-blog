@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { faHamburger } from '@fortawesome/free-solid-svg-icons';
+import { MainService } from './main.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,5 +10,5 @@ import { faHamburger } from '@fortawesome/free-solid-svg-icons';
 export class AppComponent {
   faHamburger=faHamburger;
   title = 'idioziang';
-  constructor(public router:Router) {}
+  constructor(public router:Router,public mservice:MainService) {}
 }

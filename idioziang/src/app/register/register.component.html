@@ -32,6 +32,7 @@
               <a [routerLink]="['/']" class="btn btn-light"> Cancel</a>
               <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Create</button>
             </div>
+            <a class="btn btn-default" (click)="router.navigate(['/login'])">Hai già un account? Accedi</a>
           </div>
         </fieldset>
       </form>

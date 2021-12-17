@@ -2,18 +2,18 @@
   margin:0% 5%;
 }
 main{
-  width:80%;
+  flex:3; //il rapporto è 3 a 1 quando c'è aside senno va al 100%;
 }
 aside{
   display:flex;
-  width:20%;
+  flex:1;
   margin-left:5%;
 }
 nav{
   position:absolute;
   top:10px;
   right:30px;
-  button:last-of-type{
+  button {
     margin-left:5px;
   }
 }

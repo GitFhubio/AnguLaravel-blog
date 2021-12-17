@@ -1,12 +1,12 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="form" enctype="multipart/form-data">
   <div class="form-group">
     <label for="title">Titolo dell'articolo:</label>
-    <input type="text" (input)="checkString('title')" class="form-control" formControlName="title">
+    <input type="text" (input)="checkString('title')" class="form-control" formControlName="title" value="{{article?.title}}">
     <!-- ngModel name="title" -->
   </div>
   <div class="form-group">
     <label for="content">Testo:</label>
-    <textarea rows="30" cols="50" class="form-control" formControlName="content"></textarea>
+    <textarea rows="30" cols="40" class="form-control" formControlName="content" value="{{article?.content}}"></textarea>
   </div>
   <div class="form-group">
     <label for="image">Copertina:</label>
@@ -18,7 +18,7 @@
   </div>
   <div class="form-group">
  <select multiple class="form-control"  formControlName="selectedCategories" >
-   <option *ngFor="let category of categories" value={{category.id}}>{{category.slug}}</option>
+   <option *ngFor="let category of categories"  value={{category.id}} [selected]=true>{{category.slug}}</option>
  </select>
   <input type="text" #newcategory>
   <button type="button" (click)="addToList('c',newcategory)">Aggiungi categoria</button>
@@ -31,7 +31,8 @@
   <ul><li #item *ngFor="let tag of newTags" (click)="removeItem('t',item)">{{tag}}</li>
 </ul>
 </div>
-  <button type="submit" class="btn btn-primary">Aggiungi nuovo articolo</button>
+  <button type="submit" class="btn btn-primary">{{article == undefined ? 'Aggiungi nuovo articolo' : 'Conferma modifiche'}}</button>
 </form>
 
 <p *ngIf="error">Tutti i campi sono obbligatori</p>
+

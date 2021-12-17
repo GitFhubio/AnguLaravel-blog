@@ -12,10 +12,12 @@ import { User } from './models/user';
   providedIn: 'root'
 })
 export class MainService implements CanActivate {
+  private headers = new HttpHeaders({'Content-Type': 'application/json'});
   constructor(public http:HttpClient,private router: Router,public jwtHelper: JwtHelperService) {
   }
   onSearchByTag:(string|boolean)[]=[];
   onSearchByCat:(string|boolean)[]=[];
+  nullSrc:string="https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png";
 
 allArticles(){
   return this.http.get<Article[]>('http://127.0.0.1:8000/api/articles');
@@ -57,7 +59,7 @@ login(user: User): Observable<any> {
         if (token) {
           // this.token = token;
           localStorage.setItem('token',response.token);
-          localStorage.setItem('role',response.role);
+          localStorage.setItem('roles',response.roles);
           localStorage.setItem('id',response.id);
           return true;
         } else {
@@ -82,10 +84,14 @@ errorHandler(error: HttpErrorResponse): any {
 logout(): void {
   // this.token ='';
   localStorage.removeItem('token');
-  localStorage.removeItem('role');
+  localStorage.removeItem('roles');
   localStorage.removeItem('id');
   console.log('you are logged out!');
   this.router.navigate(['/']);
+}
+
+deleteArticle(article:Article): Observable<any> {
+  return this.http.delete('http://127.0.0.1:8000/api/articles/'+article.id, {headers: this.headers});
 }
 
 getUsers() {

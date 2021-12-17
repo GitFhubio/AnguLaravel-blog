@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MainService } from '../main.service';
 import { Article } from '../models/article';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-home',
@@ -10,8 +12,9 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 })
 export class HomeComponent implements OnInit {
   faTimes=faTimes;
+  p:number=1;
   articles:Article[]=[];
-  constructor(public mservice:MainService) {
+  constructor(public mservice:MainService,public http:HttpClient) {
     this.mservice.allArticles().subscribe(res=>
       this.articles=res)
       this.mservice.variableChanged$.subscribe(res=>

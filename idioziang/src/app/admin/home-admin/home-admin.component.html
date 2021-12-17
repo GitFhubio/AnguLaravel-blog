@@ -1,4 +1,24 @@
-<p>home-admin works!</p>
+<div class="up-content">
+<h2>Bentornato {{admin.name}}</h2>
+<a href="javascript:void(0)" [routerLink]="['/admin/create-article']" class="btn btn-primary">Crea nuovo articolo</a>
+</div>
 <div class="row-content">
-  <a *ngIf="this.mservice.current('role') == 'superadmin'" [routerLink]="['/admin/users']"><button class="btn btn-danger">Tutti gli utenti</button></a>
+  <div class="superadmin" *ngIf="this.mservice.current('roles') =='superadmin'; else elseBlock" >
+   <a [routerLink]="['/admin/users']"><button class="btn btn-danger">Tutti gli utenti</button></a>
+  </div>
+  <ng-template #elseBlock>
+    <div class="card-container">
+  <div *ngFor="let article of articles" class="card">
+    <h3 class="card-title text-center">{{article.title}}</h3>
+    <img class="card-img-top" src="{{article.img != null ? 'http://127.0.0.1:8000/'+article.img : mservice.nullSrc}}" alt="Card image cap" alt="Card image cap">
+    <div class="card-body">
+      <p class="card-text">{{article.content?.slice(0,100)+'...'}}</p>
+      <div class="buttons">
+        <a href="javascript:void(0)" [routerLink]="['/admin/update-article',this.mservice.current('id'),article.id]" class="btn btn-primary">Modifica</a>
+        <a href="javascript:void(0)" (click)="delete(article)" class="btn btn-primary">Cancella</a>
+    </div>
+    </div>
+  </div>
+</div>
+  </ng-template>
 </div>
