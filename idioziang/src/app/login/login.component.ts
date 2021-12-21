@@ -40,7 +40,11 @@ export class LoginComponent implements OnInit {
           console.log(this.authService.current('id'))
           console.log(this.authService.current('roles'))
           if (response === true) {
-            this.router.navigate(['/admin']);
+            if(this.authService.current('roles') != 'user'){
+            this.router.navigate(['/admin'])}
+            else{
+            this.router.navigate(['/'])
+          }
           } else {
             this.status = 'error';
             this.message = 'Username or password is incorrect';

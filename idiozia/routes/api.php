@@ -34,3 +34,5 @@ Route::get('categories', 'Api\ApiController@categories');
 Route::get('articles-by-cat/{param}', 'Api\ApiController@filteredByCat');
 Route::get('articles-by-tag/{param}', 'Api\ApiController@filteredByTag');
 Route::get('tags', 'Api\ApiController@tags');
+Route::post('articles/{id}/favoritesUp', 'ArticleController@favoritesUp');
+Route::post('articles/{id}/favoritesDown', 'ArticleController@favoritesDown');

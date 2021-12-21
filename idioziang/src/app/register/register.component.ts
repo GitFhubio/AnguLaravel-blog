@@ -45,12 +45,17 @@ export class RegisterComponent implements OnInit {
           console.log(response);
           if (response == 1) {
 // una volta che lo registro lo loggo gia dentro cosi ha token e puo accedere ad area riservata
-            this.authService.login(this.userForm.value)
-            .subscribe(
+            this.authService.login(this.userForm.value).subscribe(
               response  => {
                 console.log(response);
+                console.log(this.authService.current('id'))
+                console.log(this.authService.current('roles'))
                 if (response === true) {
-                  this.router.navigate(['/admin']);
+                  if(this.authService.current('roles') != 'user'){
+                  this.router.navigate(['/admin'])}
+                  else{
+                  this.router.navigate(['/'])
+                }
                 } else {
                   this.status = 'error';
                   this.message = 'Username or password is incorrect';
@@ -62,17 +67,17 @@ export class RegisterComponent implements OnInit {
                 this.message = error[`message`];
               }
             );
-            // this.router.navigate(['/login']); // questo era prima che mettessi login dentro register
-          } else {
-            this.status = 'error';
-            this.message = 'Username or password is incorrect';
-          }
-        },
-        error =>  {
-          console.log(error);
-          this.status = 'error';
-          this.message = error[`message`];
         }
-      );
+        else {
+          this.status = 'error';
+          this.message = 'Username or password is incorrect';
+        }
+      },
+      error =>  {
+        console.log(error);
+        this.status = 'error';
+        this.message = error[`message`];
+      }
+    )
   }
 }

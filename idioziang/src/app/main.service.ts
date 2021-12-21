@@ -12,13 +12,16 @@ import { User } from './models/user';
   providedIn: 'root'
 })
 export class MainService implements CanActivate {
-  private headers = new HttpHeaders({'Content-Type': 'application/json'});
-  constructor(public http:HttpClient,private router: Router,public jwtHelper: JwtHelperService) {
-  }
+  myfavorites=[] as any;
   onSearchByTag:(string|boolean)[]=[];
   onSearchByCat:(string|boolean)[]=[];
+  token:string|null=null;
   nullSrc:string="https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png";
-
+  private headers = new HttpHeaders({'Content-Type': 'application/json'});
+  constructor(public http:HttpClient,private router: Router,public jwtHelper: JwtHelperService) {
+  // this.myfavorites = JSON.parse(localStorage.getItem('myfavorites')!);
+  // console.log(this.myfavorites);
+  }
 allArticles(){
   return this.http.get<Article[]>('http://127.0.0.1:8000/api/articles');
 }
@@ -61,6 +64,7 @@ login(user: User): Observable<any> {
           localStorage.setItem('token',response.token);
           localStorage.setItem('roles',response.roles);
           localStorage.setItem('id',response.id);
+          this.myfavorites = JSON.parse(localStorage.getItem('myfavorites')!);
           return true;
         } else {
           return false;
@@ -82,10 +86,12 @@ errorHandler(error: HttpErrorResponse): any {
 }
 
 logout(): void {
-  // this.token ='';
+  this.token =null;
   localStorage.removeItem('token');
   localStorage.removeItem('roles');
   localStorage.removeItem('id');
+  // localStorage.removeItem('myfavorites');
+   //questo di sopra lo faccio solo per debug, i favoriti devono permanere al logout
   console.log('you are logged out!');
   this.router.navigate(['/']);
 }
@@ -102,5 +108,8 @@ variableChanged$= this.variable.asObservable();
 
 changeVariable(u:Article[]){
 this.variable.next(u);
+}
+addToFavorites(number:number){
+number=number+1;
 }
 }

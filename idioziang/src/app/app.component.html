@@ -5,7 +5,8 @@
   <button  class="btn btn-dark" *ngIf="router.url != '/register'" (click)="router.navigate(['/register'])">Registrati</button>
   </div>
 <ng-template #elseBlock>
-  <button class="btn btn-dark" *ngIf="!router.url.includes('/admin')"  (click)="router.navigate(['/admin'])">Dashboard</button>
+  <button class="btn btn-dark" *ngIf="router.url!='/my-favorites' && mservice.current('roles') =='user'"  (click)="router.navigate(['/my-favorites'])">I miei preferiti</button>
+  <button class="btn btn-dark" *ngIf="!router.url.includes('/admin') && mservice.current('roles')!='user'"  (click)="router.navigate(['/admin'])">Dashboard</button>
   <button  class="btn btn-dark" (click)="mservice.logout()">Disconnettiti</button>
 </ng-template>
   <button  class="btn btn-dark" *ngIf="router.url != '/'"  (click)="router.navigate(['/'])">Home</button>

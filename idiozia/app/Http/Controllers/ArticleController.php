@@ -183,4 +183,16 @@ class ArticleController extends Controller
         $article=Article::find($id);
         $article->delete();
     }
+
+    public function favoritesUp($id){
+        $article=Article::find($id);
+        //la request è inutile prenderla
+        $article->likes= $article->likes + 1;
+        $article->save();
+    }
+    public function favoritesDown($id){
+        $article=Article::find($id);
+        $article->likes= $article->likes - 1;
+        $article->save();
+    }
 }

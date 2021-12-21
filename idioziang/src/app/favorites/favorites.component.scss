@@ -1,0 +1,16 @@
+ul {
+  display:flex;
+  list-style: none;
+}
+
+.card{
+  opacity:0.8;
+  &-img-top{
+    max-height:250px;
+  }
+}
+h2{
+  font-size:20px;
+  padding:10px 20px;
+  position:relative;
+}

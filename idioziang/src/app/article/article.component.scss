@@ -21,6 +21,24 @@ padding:20px;
 .comments li {
   margin-bottom:20px;
 }
-.comments li a {
+a {
   cursor: pointer;
+}
+.reply-block,.reply{
+  margin-top:10px;
+  button{
+    font-style: italic;
+    width:max-content;
+  }
+}
+
+.reply-block button {
+  margin-left:40px;
+}
+.article-details {
+  margin-bottom:10px;
+  h5{
+margin-bottom:0;
+margin-right:5px;
+  }
 }

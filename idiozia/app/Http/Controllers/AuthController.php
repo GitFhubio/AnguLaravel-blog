@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use Spatie\Permission\Models\Role;
 use App\User;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -25,15 +26,7 @@ class AuthController extends Controller
         'password.required' => 'Please Enter Your Password',
 
         ]);
-        // switch($request->email){
-        //    case 'admin@outlook.it':
-        //     $superadmin=true;
-        //     break;
-        //    default:
-        //    $superadmin=false;
-        // }
-
-        // $currentId=User::where('email',$request->email)->first()->id; // o Auth id che già ho a sto punto
+     // $currentId=User::where('email',$request->email)->first()->id; // o Auth id che già ho a sto punto
         if ($validator->fails()) {
             $message = ['errors' => $validator->errors()];
                     return  Response::json($message, 202);
@@ -69,6 +62,7 @@ class AuthController extends Controller
                 'password' => bcrypt($request->password),
             ));
             $user->save();
+            $user->assignRole(Role::find(5));
             $response = true;
         }
         return $response;

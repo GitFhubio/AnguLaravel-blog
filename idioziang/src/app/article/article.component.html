@@ -2,7 +2,7 @@
   <h1 class="text-center">{{article.title}}</h1>
   <!-- <h5 *ngIf="article.author" class="card-title">{{article.author.name}}</h5> -->
   <div>
-  <img class="card-img-top" src="{{article.img != null ? 'http://127.0.0.1:8000/'+article.img : mservice.nullSrc}}" alt="Card image cap" >
+  <img class="card-img-top" src="https://via.placeholder.com/400x400" alt="Card image cap" >
   <p class="card-text">{{article.content}} How many times were you frustrated while looking
     out for a good collection of programming/algorithm
     /interview questions? What did you expect and what
@@ -53,7 +53,10 @@
     preparation course.</p>
   </div>
   <div class="card-body">
-    <h5 class="card-title"> <fa-icon [icon]="faUser"></fa-icon> {{article.author?.name}}</h5>
+    <div class="article-details d-flex align-items-center">
+      <h5 class="card-title"> <fa-icon [icon]="faUser"></fa-icon> {{article.author?.name}}</h5>
+    <button class="btn btn-danger" (click)=" addRemoveFavorites()"><fa-icon [icon]="faHeart"></fa-icon> {{article.likes}}</button>
+    </div>
     <ul class="categories">
       <li *ngFor="let category of article.categories">
        <span class="badge badge-primary">{{category.slug}}</span>
@@ -69,7 +72,7 @@
       <li *ngFor="let comment of article.comments;let i=index;">
        <p>{{comment.body}}</p>
        <p *ngIf="comment.author" class="font-weight-bold">{{comment.author.name}}</p>
-       <a (click)="hideme[i] = !hideme[i]">{{"Risposte ("+ comment.replies.length + ")"}}
+       <a (click)="hideme[i] = !hideme[i]">{{"Risposte ("+ comment.replies?.length + ")"}}
       </a>
         <div [hidden]="!hideme[i]" >
          <ul class="replies">
@@ -78,13 +81,20 @@
            <p class="font-weight-bold">{{reply.author?.name}}</p>
          </li>
        </ul>
-          <input #message (keydown.enter)="sendReply(message,comment)" type="text">
+       <div class="reply-block">
+        <button class="btn btn-warning"  *ngIf="!mservice.loggedIn(); else elseBlock;"  (click)="router.navigate(['/login'])">Accedi o registrati per commentare</button>
+          <ng-template #elseBlock>
+          <input  #message (keydown.enter)="sendReply(message,comment)" type="text" />
+        </ng-template>
+        </div>
       </div>
       </li>
     </ul>
       <div class="reply">
-        <h5>Scrivi un commento</h5>
-        <input #message (keydown.enter)="sendMessage(message)" type="text">
+        <button  class="btn btn-warning" *ngIf="!mservice.loggedIn(); else elseBlock;"  (click)="router.navigate(['/login'])">Accedi o registrati per commentare</button>
+        <ng-template #elseBlock>
+        <input  #message (keydown.enter)="sendMessage(message)" type="text" />
+      </ng-template>
       </div>
   </div>
 </div>

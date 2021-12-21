@@ -19,6 +19,7 @@ class CreateArticlesTable extends Migration
             $table->string('title',100);
             $table->longText('content');
             $table->string('img',2048)->nullable();
+            $table->integer('likes')->default(0);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

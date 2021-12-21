@@ -12,8 +12,6 @@ import { User } from 'src/app/models/user';
 })
 export class AdminListComponent implements OnInit {
 users:User[]=[];
-form : FormGroup;
-roles:string[]=['admin','writer','editor'];
 private headers = new HttpHeaders({'Content-Type': 'application/json'});
   constructor(public router:Router,public _http:HttpClient, public mservice:MainService,public fb: FormBuilder) {
 
@@ -22,9 +20,6 @@ private headers = new HttpHeaders({'Content-Type': 'application/json'});
         this.users = res;
         console.log(this.users);
       });
-      this.form=fb.group({
-        'selectedRoles':['']
-      })
    }
 
     ngOnInit(): void {

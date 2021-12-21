@@ -1,5 +1,5 @@
 export class Article {
-  id?:number|string;
+  id:number|string = 1;
   title?: string;
   content?: string;
   img?:string;
@@ -7,6 +7,7 @@ export class Article {
   comments: any[]=[];
   categories:any[]=[];
   tags:any[]=[];
+  likes:number= 0;
   author:Author= {};
 }
 

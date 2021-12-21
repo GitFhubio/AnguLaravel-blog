@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { adminRoutes } from './admin/admin.routes';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { ArticleComponent } from './article/article.component';
+import { AuthGuardService } from './auth-guard.service';
+import { FavoritesComponent } from './favorites/favorites.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { Page404Component } from './page404/page404.component';
@@ -30,6 +32,11 @@ const routes: Routes = [{
   children:adminRoutes,
 
 },
+{
+  path:'my-favorites',
+  component:FavoritesComponent,
+  canActivate:[AuthGuardService],
+  data: { roles: ['user']}},
 //va alla fine ** per page not found
 {
   path:'**',

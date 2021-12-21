@@ -1,6 +1,6 @@
 <div class="up-content">
 <h2>Bentornato {{admin.name}}</h2>
-<a href="javascript:void(0)" [routerLink]="['/admin/create-article']" class="btn btn-primary">Crea nuovo articolo</a>
+<a *ngIf="this.mservice.current('roles') !='superadmin'" [routerLink]="['/admin/create-article']" class="btn btn-primary">Crea nuovo articolo</a>
 </div>
 <div class="row-content">
   <div class="superadmin" *ngIf="this.mservice.current('roles') =='superadmin'; else elseBlock" >

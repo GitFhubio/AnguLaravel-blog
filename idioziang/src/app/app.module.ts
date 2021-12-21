@@ -18,6 +18,7 @@ import { FormComponent } from './form/form.component';
 import { AdminListComponent } from './admin/admin-list/admin-list.component';
 import { UpdateRolesComponent } from './admin/update-roles/update-roles.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { FavoritesComponent } from './favorites/favorites.component';
 
 export function tokenGetter(): any {
   return localStorage.getItem('token');
@@ -36,7 +37,8 @@ export function tokenGetter(): any {
     FormComponent,
     AdminListComponent,
     UpdateRolesComponent,
-    SidebarComponent
+    SidebarComponent,
+    FavoritesComponent
   ],
   imports: [
     JwtModule,
